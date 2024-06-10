@@ -1,6 +1,6 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 
-video_id = 'b-1OyRE53Zc'
+video_id = 'zaZrWZwKJH4'
 
 try:
     transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
@@ -10,7 +10,7 @@ except Exception as e:
 
 try:
     transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en', 'pt'])
-    with open('legenda.txt', 'w') as f:
+    with open('legenda.txt', 'w', encoding='utf-8') as f:
         for item in transcript:
             f.write(item['text'] + ' ')
 except Exception as e:
@@ -21,7 +21,7 @@ if transcript_list:
         transcript_en = transcript_list.find_transcript(['en'])
         translated_transcript = transcript_en.translate('pt')
         transcript_data = translated_transcript.fetch()
-        with open('legenda_pt.txt', 'w') as f:
+        with open('legenda_pt.txt', 'w', encoding='utf-8') as f:
             for item in transcript_data:
                 f.write(item['text'] + ' ')
     except Exception as e:
